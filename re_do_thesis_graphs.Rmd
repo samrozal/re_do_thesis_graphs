@@ -1,0 +1,35 @@
+---
+title: "Re do thesis graphs"
+author: "Sam Rozal"
+date: "12/31/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+library(ggbeeswarm)
+library(lubridate)
+library(janitor)
+```
+
+```{r}
+quadrats_20 <- read_csv(here("data", "quadrats_through_2020.csv"),na=c("", " ", "  "))
+```
+
+```{r}
+quadrats_clean <- clean_names(quadrats_20) 
+quadrats_clean$date[78] <-"8/10/2019" 
+quadrats_clean$date[122] <- "11/10/2019"
+
+quadrats_date <- quadrats_clean %>% 
+  mutate(date_new = mdy(date))
+```
+
+
+```{r}
+ggplot
+```
+

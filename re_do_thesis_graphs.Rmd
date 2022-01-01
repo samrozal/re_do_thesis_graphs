@@ -30,6 +30,7 @@ quadrats_date <- quadrats_clean %>%
 
 
 ```{r}
-ggplot
+ggplot(data=quadrats_date, aes(x=month, y=accumlation_items_m2))+
+  geom_beeswarm()
 ```
 

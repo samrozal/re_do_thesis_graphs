@@ -28,9 +28,38 @@ quadrats_date <- quadrats_clean %>%
   mutate(date_new = mdy(date))
 ```
 
-
+  
 ```{r}
 ggplot(data=quadrats_date, aes(x=month, y=accumlation_items_m2))+
-  geom_beeswarm()
+  geom_beeswarm(aes(color=beach))+
+  geom_boxplot(fill=NA, width= 0.4, outlier.color="red")
 ```
 
+```{r}
+debris_summary_season <- quadrats_date %>% 
+  group_by(season) %>% 
+  summarize(count=n(),
+           median=median(accumlation_items_m2),
+           mean=mean(accumlation_items_m2))
+
+debris_summary_season
+```
+
+```{r}
+debris_summary_beach <- quadrats_date %>% 
+  group_by(beach) %>% 
+  summarize(count=n(),
+           median=median(accumlation_items_m2),
+           mean=mean(accumlation_items_m2))
+
+debris_summary_beach 
+```
+
+```{r}
+ggplot(data=debris_summary_season, aes(x=season, y=mean))+
+  geom_col()
+```
+```{r}
+ggplot(data=debris_summary_beach, aes(x=beach, y=mean))+
+  geom_col()
+```
